@@ -1,10 +1,16 @@
-FROM centos
+FROM ubuntu
 
+ENV FOULDER = beginner-html-site-styled
 # RUN yum install apache2 -y
-RUN yum update
-RUN yum install  apache2 -y
-RUN yum install  apache2-utils -y
+RUN apt-get update
+RUN apt-get install  apache2  git apache2-utils unzip  -y
 
-COPY html-code /var/www/html
+WORKDIR /var/www/html
+
+ADD https://github.com/mdn/beginner-html-site-styled/archive/refs/heads/gh-pages.zip ./
+
+RUN unzip gh-pages.zip ./
+
+RUN cp ${FOULDER}/* .
 
 CMD ["apachectl", "-D", "FOREGROUND"]
