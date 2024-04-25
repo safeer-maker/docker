@@ -13,6 +13,8 @@ phpmyadmin/phpmyadmin   latest         933569f3a9f6   9 months ago   562MB
 mariadb                 10.6.4-focal   12e05d5da3c5   2 years ago    409MB
 ```
 
+To list all od running contaier `docker ps` command is used. it will only print all of the running containers. To list all running and stoped container `docker ps -a` is required.
+
 ## Docker offical iamges
 
 [Dockerhub](https://hub.docker.com) contain the offical images from multiple software porviders, like ubuntu, alpine, nginx and many more. the developer maintain those images for lates relaesed.
@@ -42,5 +44,21 @@ docker rmi alpine:3.16.9
 # it best to remove images using image id
 docker rmi 05455a08881e
 ```
+
+## Docker run
+
+To create container form an iamge you can use `docker run` command.
+
+`docker run alpine` but running container will run on the terminal and done let you use the terminal unless you stop the container.
+
+To resolve this isuue its best to run you container in background using `-d` flag. `docker run -d alpine`
+
+## Docker port
+
+To view assigned port to docker we can use `docker port <container-id>`
+
+Port assignment n docker is done by `-p` flag. You can map imgae port to local machine port
+
+`docker run -d -p 8080:80 nginx:alpine`
 
 
