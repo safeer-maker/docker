@@ -1,0 +1,12 @@
+ARG OS=nginx
+
+FROM $OS
+
+RUN mkdir sam
+
+ARG WORKDIR=/usr/share/nginx/html
+
+RUN apt-get update
+WORKDIR  $WORKDIR
+
+COPY beginner-html-site-styled/* .
