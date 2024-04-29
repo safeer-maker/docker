@@ -1,0 +1,16 @@
+FROM ubuntu
+
+ARG name=defaultValue dest
+
+RUN apt-get update && apt-get install apache2 apache2-utils php libapache2-mod-php php-mysql -y
+
+WORKDIR /var/www/html
+
+ENV FOULDER=startbootstrap-sb-admin-2 
+
+COPY $FOULDER/* .
+
+RUN echo "<?php phpinfo(); ?>" > index.php 
+# mv $FOULDER/* .
+
+CMD ["apachectl", "-D", "FOREGROUND"]
