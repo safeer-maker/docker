@@ -2,17 +2,22 @@ FROM ubuntu
 
 ENV WORKDIR /root/web/
 
-RUN apt-get update && apt-get install -y python3 python3-pip git npm
+RUN apt-get update && apt install -y python3 python3-pip git npm  libjpeg-dev zlib1g-dev
 
 WORKDIR  $WORKDIR
 
-git clone https://github.com/YashMarmat/FullStack_Ecommerce_App.git
+ARG foulder=FullStack_Ecommerce_App
 
-cd FullStack_Ecommerce_App
+COPY $foulder $foulder
 
- --break-system-packages
-pyproject.toml-based
+RUN pip3 install --break-system-packages -r $foulder/backend/requirements.txt 
 
-sudo apt-get install libjpeg-dev zlib1g-dev
+# RUN cd $foulder/frontend
+# RUN npm i
 
-EXPOSE 4000
+#  --break-system-packages
+# pyproject.toml-based
+
+# sudo apt-get install libjpeg-dev zlib1g-dev
+
+EXPOSE 3000
