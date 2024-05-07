@@ -1,19 +1,21 @@
-FROM ubuntu
+FROM safeerahmad01/ubuntu-py-npm:v1
+# FROM ubuntu:20.04
 
 ENV WORKDIR /root/web/
 
-RUN apt-get update && apt install -y python3 python3-pip git npm  libjpeg-dev zlib1g-dev
-
+# RUN apt-get update 
+# && apt-get install -y npm  
+#libjpeg-dev zlib1g-dev 
+# python3 python3-pip
 WORKDIR  $WORKDIR
 
 ARG foulder=FullStack_Ecommerce_App
 
 COPY $foulder $foulder
 
-RUN pip3 install --break-system-packages -r $foulder/backend/requirements.txt 
+# RUN pip3 install  -r $foulder/backend/requirements.txt
 
-# RUN cd $foulder/frontend
-# RUN npm i
+# RUN cd $foulder/frontend && npm i && npm audit fix
 
 #  --break-system-packages
 # pyproject.toml-based
